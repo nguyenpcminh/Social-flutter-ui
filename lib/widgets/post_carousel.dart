@@ -43,9 +43,8 @@ class PostCarousel extends StatelessWidget {
           right: 0,
           bottom: 10,
           child: Container(
-            margin: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.075,
-              right: MediaQuery.of(context).size.width * 0.075,
+            margin: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * 0.075,
             ),
             width: MediaQuery.of(context).size.width * 0.85,
             height: 150,
@@ -68,6 +67,7 @@ class PostCarousel extends StatelessWidget {
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     height: 10,
@@ -78,6 +78,7 @@ class PostCarousel extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(
                     height: 10,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_ui/data/data.dart';
+import 'package:flutter_social_ui/widgets/custom_drawer.dart';
 import 'package:flutter_social_ui/widgets/following.dart';
 import 'package:flutter_social_ui/widgets/post_carousel.dart';
 import 'package:provider/provider.dart';
@@ -12,12 +13,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  PageController _pageController;
+  PageController _pagePostController;
+  PageController _pageFavoriteController;
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _pageController = PageController(initialPage: 0,viewportFraction: 0.8);
+    _pagePostController = PageController(initialPage: 0,viewportFraction: 0.8);
+    _pageFavoriteController = PageController(initialPage: 0,viewportFraction: 0.8);
   }
 
   @override
@@ -62,18 +65,19 @@ class _HomeScreenState extends State<HomeScreen>
               ],
             ),
           ),
+          drawer: CustomDrawer(),
           body: ListView(
             children: <Widget>[
               Following(),
               PostCarousel(
-                pageController: _pageController,
+                pageController: _pagePostController,
                 title: 'Post',
                 posts: data.posts,
               ),
                PostCarousel(
-                pageController: _pageController,
+                pageController: _pageFavoriteController,
                 title: 'Favorites',
-                posts: data.posts,
+                posts: data.currentUser.favorites,
               ),
             ],
           ),
